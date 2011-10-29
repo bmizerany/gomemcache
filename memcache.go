@@ -49,6 +49,10 @@ var (
 	NotFoundError	os.Error = os.NewError("memcache: not found")
 )
 
+func New(nc net.Conn) *Memcache {
+	return &Memcache{nc}
+}
+
 func Connect(host string, port int) (memc *Memcache, err os.Error) {
 	memc = new(Memcache)
 	addr := host + ":" + strconv.Itoa(port)
